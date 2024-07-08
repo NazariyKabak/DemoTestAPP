@@ -14,8 +14,9 @@ import java.util.List;
 public class AdController {
     @Autowired
     private AdService adService;
+
     @GetMapping
-    public List<AdData> getAdData(){
+    public List<AdData> getAdData() {
         return adService.getAdData();
     }
 
@@ -26,6 +27,12 @@ public class AdController {
 
     @PostMapping
     public AdData addAdData(@RequestBody AdData newAdData) {
+        System.out.println("Received POST request with data: " + newAdData);
         return adService.addAdData(newAdData);
+    }
+
+    @DeleteMapping("/{date}")
+    public void deleteAdDataByDate(@PathVariable String date) {
+        adService.deleteAdDataByDate(date);
     }
 }
